@@ -1,6 +1,14 @@
-import { Play, Code2, Eye } from 'lucide-react'
+import { Play, Code2, Eye, Palette } from 'lucide-react'
 
-const Header = ({ activeTab, setActiveTab, onRunCode }) => {
+const Header = ({ activeTab, setActiveTab, currentTheme, setCurrentTheme, onRunCode }) => {
+  const themes = [
+    { value: 'vs-dark', label: 'VS Code Dark', description: 'Default VS Code dark theme' },
+    { value: 'github-dark', label: 'GitHub Dark', description: 'GitHub dark theme' },
+    { value: 'monokai', label: 'Monokai', description: 'Classic Monokai theme' },
+    { value: 'dracula', label: 'Dracula', description: 'Popular Dracula theme' },
+    { value: 'hc-black', label: 'High Contrast Dark', description: 'High contrast dark theme' },
+  ];
+
   return (
     <div className="header">
       <div className="header-left">
@@ -28,6 +36,22 @@ const Header = ({ activeTab, setActiveTab, onRunCode }) => {
       </div>
       
       <div className="header-right">
+        <div className="theme-selector">
+          <Palette size={16} />
+          <select 
+            value={currentTheme} 
+            onChange={(e) => setCurrentTheme(e.target.value)}
+            className="theme-dropdown"
+            title="Change editor theme"
+          >
+            {themes.map(theme => (
+              <option key={theme.value} value={theme.value}>
+                {theme.label}
+              </option>
+            ))}
+          </select>
+        </div>
+        
         <button 
           className="btn-primary" 
           onClick={onRunCode}
