@@ -1,152 +1,152 @@
 import { useEffect, useRef } from "react";
 import MonacoEditor from "@monaco-editor/react";
 
-const CodeEditor = ({ file, theme = 'vs-dark', onChange }) => {
+const CodeEditor = ({ file, theme = "vs-dark", onChange }) => {
   const editorRef = useRef(null);
 
   const handleEditorDidMount = (editor, monaco) => {
     editorRef.current = editor;
 
     // Define custom themes
-    monaco.editor.defineTheme('monokai', {
-      base: 'vs-dark',
+    monaco.editor.defineTheme("monokai", {
+      base: "vs-dark",
       inherit: true,
       rules: [
-        { token: '', foreground: 'f8f8f2' },
-        { token: 'comment', foreground: '75715e', fontStyle: 'italic' },
-        { token: 'keyword', foreground: 'f92672' },
-        { token: 'keyword.control', foreground: 'f92672' },
-        { token: 'keyword.operator', foreground: 'f92672' },
-        { token: 'string', foreground: 'e6db74' },
-        { token: 'string.quoted', foreground: 'e6db74' },
-        { token: 'number', foreground: 'ae81ff' },
-        { token: 'constant', foreground: 'ae81ff' },
-        { token: 'constant.numeric', foreground: 'ae81ff' },
-        { token: 'type', foreground: '66d9ef' },
-        { token: 'type.identifier', foreground: '66d9ef' },
-        { token: 'identifier', foreground: 'f8f8f2' },
-        { token: 'identifier.class', foreground: 'a6e22e' },
-        { token: 'identifier.function', foreground: 'a6e22e' },
-        { token: 'tag', foreground: 'f92672' },
-        { token: 'tag.id', foreground: 'a6e22e' },
-        { token: 'tag.class', foreground: 'a6e22e' },
-        { token: 'attribute.name', foreground: 'a6e22e' },
-        { token: 'attribute.value', foreground: 'e6db74' },
-        { token: 'operator', foreground: 'f92672' },
-        { token: 'delimiter', foreground: 'f8f8f2' },
-        { token: 'delimiter.bracket', foreground: 'f8f8f2' },
-        { token: 'delimiter.parenthesis', foreground: 'f8f8f2' },
-        { token: 'variable', foreground: 'f8f8f2' },
-        { token: 'variable.predefined', foreground: 'ae81ff' },
-        { token: 'metatag', foreground: 'f92672' },
-        { token: 'metatag.content', foreground: 'e6db74' },
+        { token: "", foreground: "f8f8f2" },
+        { token: "comment", foreground: "75715e", fontStyle: "italic" },
+        { token: "keyword", foreground: "f92672" },
+        { token: "keyword.control", foreground: "f92672" },
+        { token: "keyword.operator", foreground: "f92672" },
+        { token: "string", foreground: "e6db74" },
+        { token: "string.quoted", foreground: "e6db74" },
+        { token: "number", foreground: "ae81ff" },
+        { token: "constant", foreground: "ae81ff" },
+        { token: "constant.numeric", foreground: "ae81ff" },
+        { token: "type", foreground: "66d9ef" },
+        { token: "type.identifier", foreground: "66d9ef" },
+        { token: "identifier", foreground: "f8f8f2" },
+        { token: "identifier.class", foreground: "a6e22e" },
+        { token: "identifier.function", foreground: "a6e22e" },
+        { token: "tag", foreground: "f92672" },
+        { token: "tag.id", foreground: "a6e22e" },
+        { token: "tag.class", foreground: "a6e22e" },
+        { token: "attribute.name", foreground: "a6e22e" },
+        { token: "attribute.value", foreground: "e6db74" },
+        { token: "operator", foreground: "f92672" },
+        { token: "delimiter", foreground: "f8f8f2" },
+        { token: "delimiter.bracket", foreground: "f8f8f2" },
+        { token: "delimiter.parenthesis", foreground: "f8f8f2" },
+        { token: "variable", foreground: "f8f8f2" },
+        { token: "variable.predefined", foreground: "ae81ff" },
+        { token: "metatag", foreground: "f92672" },
+        { token: "metatag.content", foreground: "e6db74" },
       ],
       colors: {
-        'editor.background': '#272822',
-        'editor.foreground': '#f8f8f2',
-        'editorLineNumber.foreground': '#75715e',
-        'editorLineNumber.activeForeground': '#f8f8f2',
-        'editor.selectionBackground': '#49483e',
-        'editor.lineHighlightBackground': '#3e3d32',
-        'editorCursor.foreground': '#f8f8f0',
-        'editor.selectionHighlightBackground': '#49483e75',
-        'editorIndentGuide.background': '#3e3d32',
-        'editorIndentGuide.activeBackground': '#75715e',
-      }
+        "editor.background": "#272822",
+        "editor.foreground": "#f8f8f2",
+        "editorLineNumber.foreground": "#75715e",
+        "editorLineNumber.activeForeground": "#f8f8f2",
+        "editor.selectionBackground": "#49483e",
+        "editor.lineHighlightBackground": "#3e3d32",
+        "editorCursor.foreground": "#f8f8f0",
+        "editor.selectionHighlightBackground": "#49483e75",
+        "editorIndentGuide.background": "#3e3d32",
+        "editorIndentGuide.activeBackground": "#75715e",
+      },
     });
 
-    monaco.editor.defineTheme('github-dark', {
-      base: 'vs-dark',
+    monaco.editor.defineTheme("github-dark", {
+      base: "vs-dark",
       inherit: true,
       rules: [
-        { token: '', foreground: 'e6edf3' },
-        { token: 'comment', foreground: '6e7681', fontStyle: 'italic' },
-        { token: 'keyword', foreground: 'ff7b72' },
-        { token: 'keyword.control', foreground: 'ff7b72' },
-        { token: 'keyword.operator', foreground: 'ff7b72' },
-        { token: 'string', foreground: 'a5c261' },
-        { token: 'string.quoted', foreground: 'a5c261' },
-        { token: 'number', foreground: '79c0ff' },
-        { token: 'constant', foreground: '79c0ff' },
-        { token: 'constant.numeric', foreground: '79c0ff' },
-        { token: 'type', foreground: 'ffa657' },
-        { token: 'type.identifier', foreground: 'ffa657' },
-        { token: 'identifier', foreground: 'e6edf3' },
-        { token: 'identifier.class', foreground: '7ee787' },
-        { token: 'identifier.function', foreground: 'd2a8ff' },
-        { token: 'tag', foreground: '7ee787' },
-        { token: 'tag.id', foreground: 'ffa657' },
-        { token: 'tag.class', foreground: 'ffa657' },
-        { token: 'attribute.name', foreground: '79c0ff' },
-        { token: 'attribute.value', foreground: 'a5c261' },
-        { token: 'operator', foreground: 'ff7b72' },
-        { token: 'delimiter', foreground: 'e6edf3' },
-        { token: 'delimiter.bracket', foreground: 'e6edf3' },
-        { token: 'delimiter.parenthesis', foreground: 'e6edf3' },
-        { token: 'variable', foreground: 'e6edf3' },
-        { token: 'variable.predefined', foreground: '79c0ff' },
-        { token: 'metatag', foreground: '7ee787' },
-        { token: 'metatag.content', foreground: 'a5c261' },
+        { token: "", foreground: "e6edf3" },
+        { token: "comment", foreground: "6e7681", fontStyle: "italic" },
+        { token: "keyword", foreground: "ff7b72" },
+        { token: "keyword.control", foreground: "ff7b72" },
+        { token: "keyword.operator", foreground: "ff7b72" },
+        { token: "string", foreground: "a5c261" },
+        { token: "string.quoted", foreground: "a5c261" },
+        { token: "number", foreground: "79c0ff" },
+        { token: "constant", foreground: "79c0ff" },
+        { token: "constant.numeric", foreground: "79c0ff" },
+        { token: "type", foreground: "ffa657" },
+        { token: "type.identifier", foreground: "ffa657" },
+        { token: "identifier", foreground: "e6edf3" },
+        { token: "identifier.class", foreground: "7ee787" },
+        { token: "identifier.function", foreground: "d2a8ff" },
+        { token: "tag", foreground: "7ee787" },
+        { token: "tag.id", foreground: "ffa657" },
+        { token: "tag.class", foreground: "ffa657" },
+        { token: "attribute.name", foreground: "79c0ff" },
+        { token: "attribute.value", foreground: "a5c261" },
+        { token: "operator", foreground: "ff7b72" },
+        { token: "delimiter", foreground: "e6edf3" },
+        { token: "delimiter.bracket", foreground: "e6edf3" },
+        { token: "delimiter.parenthesis", foreground: "e6edf3" },
+        { token: "variable", foreground: "e6edf3" },
+        { token: "variable.predefined", foreground: "79c0ff" },
+        { token: "metatag", foreground: "7ee787" },
+        { token: "metatag.content", foreground: "a5c261" },
       ],
       colors: {
-        'editor.background': '#0d1117',
-        'editor.foreground': '#e6edf3',
-        'editorLineNumber.foreground': '#6e7681',
-        'editorLineNumber.activeForeground': '#e6edf3',
-        'editor.selectionBackground': '#264f78',
-        'editor.lineHighlightBackground': '#21262d',
-        'editorCursor.foreground': '#e6edf3',
-        'editor.selectionHighlightBackground': '#264f7850',
-        'editorIndentGuide.background': '#21262d',
-        'editorIndentGuide.activeBackground': '#6e7681',
-      }
+        "editor.background": "#0d1117",
+        "editor.foreground": "#e6edf3",
+        "editorLineNumber.foreground": "#6e7681",
+        "editorLineNumber.activeForeground": "#e6edf3",
+        "editor.selectionBackground": "#264f78",
+        "editor.lineHighlightBackground": "#21262d",
+        "editorCursor.foreground": "#e6edf3",
+        "editor.selectionHighlightBackground": "#264f7850",
+        "editorIndentGuide.background": "#21262d",
+        "editorIndentGuide.activeBackground": "#6e7681",
+      },
     });
 
-    monaco.editor.defineTheme('dracula', {
-      base: 'vs-dark',
+    monaco.editor.defineTheme("dracula", {
+      base: "vs-dark",
       inherit: true,
       rules: [
-        { token: '', foreground: 'f8f8f2' },
-        { token: 'comment', foreground: '6272a4', fontStyle: 'italic' },
-        { token: 'keyword', foreground: 'ff79c6' },
-        { token: 'keyword.control', foreground: 'ff79c6' },
-        { token: 'keyword.operator', foreground: 'ff79c6' },
-        { token: 'string', foreground: 'f1fa8c' },
-        { token: 'string.quoted', foreground: 'f1fa8c' },
-        { token: 'number', foreground: 'bd93f9' },
-        { token: 'constant', foreground: 'bd93f9' },
-        { token: 'constant.numeric', foreground: 'bd93f9' },
-        { token: 'type', foreground: '8be9fd' },
-        { token: 'type.identifier', foreground: '8be9fd' },
-        { token: 'identifier', foreground: 'f8f8f2' },
-        { token: 'identifier.class', foreground: '50fa7b' },
-        { token: 'identifier.function', foreground: '50fa7b' },
-        { token: 'tag', foreground: 'ff79c6' },
-        { token: 'tag.id', foreground: '50fa7b' },
-        { token: 'tag.class', foreground: '50fa7b' },
-        { token: 'attribute.name', foreground: '50fa7b' },
-        { token: 'attribute.value', foreground: 'f1fa8c' },
-        { token: 'operator', foreground: 'ff79c6' },
-        { token: 'delimiter', foreground: 'f8f8f2' },
-        { token: 'delimiter.bracket', foreground: 'f8f8f2' },
-        { token: 'delimiter.parenthesis', foreground: 'f8f8f2' },
-        { token: 'variable', foreground: 'f8f8f2' },
-        { token: 'variable.predefined', foreground: 'bd93f9' },
-        { token: 'metatag', foreground: 'ff79c6' },
-        { token: 'metatag.content', foreground: 'f1fa8c' },
+        { token: "", foreground: "f8f8f2" },
+        { token: "comment", foreground: "6272a4", fontStyle: "italic" },
+        { token: "keyword", foreground: "ff79c6" },
+        { token: "keyword.control", foreground: "ff79c6" },
+        { token: "keyword.operator", foreground: "ff79c6" },
+        { token: "string", foreground: "f1fa8c" },
+        { token: "string.quoted", foreground: "f1fa8c" },
+        { token: "number", foreground: "bd93f9" },
+        { token: "constant", foreground: "bd93f9" },
+        { token: "constant.numeric", foreground: "bd93f9" },
+        { token: "type", foreground: "8be9fd" },
+        { token: "type.identifier", foreground: "8be9fd" },
+        { token: "identifier", foreground: "f8f8f2" },
+        { token: "identifier.class", foreground: "50fa7b" },
+        { token: "identifier.function", foreground: "50fa7b" },
+        { token: "tag", foreground: "ff79c6" },
+        { token: "tag.id", foreground: "50fa7b" },
+        { token: "tag.class", foreground: "50fa7b" },
+        { token: "attribute.name", foreground: "50fa7b" },
+        { token: "attribute.value", foreground: "f1fa8c" },
+        { token: "operator", foreground: "ff79c6" },
+        { token: "delimiter", foreground: "f8f8f2" },
+        { token: "delimiter.bracket", foreground: "f8f8f2" },
+        { token: "delimiter.parenthesis", foreground: "f8f8f2" },
+        { token: "variable", foreground: "f8f8f2" },
+        { token: "variable.predefined", foreground: "bd93f9" },
+        { token: "metatag", foreground: "ff79c6" },
+        { token: "metatag.content", foreground: "f1fa8c" },
       ],
       colors: {
-        'editor.background': '#282a36',
-        'editor.foreground': '#f8f8f2',
-        'editorLineNumber.foreground': '#6272a4',
-        'editorLineNumber.activeForeground': '#f8f8f2',
-        'editor.selectionBackground': '#44475a',
-        'editor.lineHighlightBackground': '#44475a75',
-        'editorCursor.foreground': '#f8f8f0',
-        'editor.selectionHighlightBackground': '#44475a50',
-        'editorIndentGuide.background': '#44475a',
-        'editorIndentGuide.activeBackground': '#6272a4',
-      }
+        "editor.background": "#282a36",
+        "editor.foreground": "#f8f8f2",
+        "editorLineNumber.foreground": "#6272a4",
+        "editorLineNumber.activeForeground": "#f8f8f2",
+        "editor.selectionBackground": "#44475a",
+        "editor.lineHighlightBackground": "#44475a75",
+        "editorCursor.foreground": "#f8f8f0",
+        "editor.selectionHighlightBackground": "#44475a50",
+        "editorIndentGuide.background": "#44475a",
+        "editorIndentGuide.activeBackground": "#6272a4",
+      },
     });
 
     // Apply the theme immediately after defining
@@ -176,6 +176,9 @@ const CodeEditor = ({ file, theme = 'vs-dark', onChange }) => {
       multiCursorModifier: "ctrlCmd",
       formatOnPaste: true,
       formatOnType: true,
+      // Enhanced undo/redo settings
+      undoStopAfter: 2000, // Auto-create undo stops after 2 seconds of inactivity
+      undoStopBefore: true, // Create undo stop before certain operations
       // Enhanced suggestion settings
       suggestOnTriggerCharacters: true,
       acceptSuggestionOnCommitCharacter: true,
@@ -235,6 +238,55 @@ const CodeEditor = ({ file, theme = 'vs-dark', onChange }) => {
     editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
       const runEvent = new CustomEvent("runCode");
       window.dispatchEvent(runEvent);
+    });
+
+    // Add Undo/Redo functionality
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyZ, () => {
+      editor.trigger("keyboard", "undo", null);
+      console.log("Undo performed");
+    });
+
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyY, () => {
+      editor.trigger("keyboard", "redo", null);
+      console.log("Redo performed");
+    });
+
+    // Alternative Redo shortcut (Ctrl+Shift+Z) - common on many systems
+    editor.addCommand(
+      monaco.KeyMod.CtrlCmd | monaco.KeyMod.Shift | monaco.KeyCode.KeyZ,
+      () => {
+        editor.trigger("keyboard", "redo", null);
+        console.log("Redo performed (Ctrl+Shift+Z)");
+      }
+    );
+
+    // Additional useful shortcuts
+    // Ctrl+A - Select All
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyA, () => {
+      editor.trigger("keyboard", "editor.action.selectAll", null);
+    });
+
+    // Ctrl+D - Add selection to next find match (multi-cursor)
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyD, () => {
+      editor.trigger(
+        "keyboard",
+        "editor.action.addSelectionToNextFindMatch",
+        null
+      );
+    });
+
+    // Ctrl+/ - Toggle line comment
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Slash, () => {
+      editor.trigger("keyboard", "editor.action.commentLine", null);
+    });
+
+    // Alt+Up/Down - Move line up/down
+    editor.addCommand(monaco.KeyMod.Alt | monaco.KeyCode.UpArrow, () => {
+      editor.trigger("keyboard", "editor.action.moveLinesUpAction", null);
+    });
+
+    editor.addCommand(monaco.KeyMod.Alt | monaco.KeyCode.DownArrow, () => {
+      editor.trigger("keyboard", "editor.action.moveLinesDownAction", null);
     });
 
     // Enhanced language-specific configurations

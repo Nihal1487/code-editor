@@ -14,7 +14,7 @@ const Header = ({ activeTab, setActiveTab, currentTheme, setCurrentTheme, onRunC
       <div className="header-left">
         <div className="logo">
           <Code2 size={20} style={{ display: 'inline', marginRight: '8px' }} />
-          Code Canvas
+          CodeHub
         </div>
         
         <div className="tab-switcher">
